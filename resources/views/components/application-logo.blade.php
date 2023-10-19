@@ -1,0 +1,1 @@
+<img src="{{asset('logo/linkedin.png')}}" alt="" width="50px">
