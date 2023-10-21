@@ -21,6 +21,7 @@
         <link href="{{ asset('backend/assets/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('backend/assets/css/icons.min.css') }}" rel="stylesheet">
         <link href="{{ asset('backend/assets/css/app.min.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 
 
     </head>
@@ -138,6 +139,8 @@
 
         <!-- App js -->
         <script src="{{asset('backend/assets/js/app.js')}}"></script>
+        <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+        {!! Toastr::message() !!}
     </body>
 
 </html>

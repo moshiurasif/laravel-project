@@ -17,7 +17,7 @@
        <link href="{{asset('backend/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
        <!-- App Css-->
        <link href="{{asset('backend/assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
-
+       <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
     </head>
 
     <body class="auth-body-bg">
@@ -99,6 +99,8 @@
         <script src="{{asset('backend/assets/libs/node-waves/waves.min.js')}}"></script>
 
         <script src="{{asset('backend/assets/js/app.js')}}"></script>
+        <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+        {!! Toastr::message() !!}
 
     </body>
 </html>

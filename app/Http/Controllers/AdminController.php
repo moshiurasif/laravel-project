@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +17,7 @@ class AdminController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
-
+        Toastr::success('User Logout Successfully', 'success', ["options"]);
         return redirect('/login');
     }
 
@@ -50,6 +51,7 @@ class AdminController extends Controller
         }
 
         $data->save();
+        Toastr::success('Profile Updated Successfully', 'success', ["options"]);
 
         return redirect()->route('admin.profile');
     }
