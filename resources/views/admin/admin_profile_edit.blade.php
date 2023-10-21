@@ -8,7 +8,7 @@
 
                 <h4 class="card-title">Edit Admin Profile</h4>
                 
-                <form action="" method="post">
+                <form action="{{route('store.profile')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row mb-3">
                         <label for="name" class="col-sm-2 col-form-label">Name</label>
@@ -41,7 +41,7 @@
                     <div class="row mb-3">
                         <label for="propic" class="col-sm-2 col-form-label"></label>
                         <div class="col-sm-10">
-                            <img id="showImage" src="{{asset('backend/assets/images/users/avatar-5.jpg')}}" alt="avatar-5" class="rounded avatar-lg">
+                            <img id="showImage" src="{{(!empty($editData->propic)) ? url('upload/admin_images/'. $editData->propic) : url('no-image.jpg')}}" alt="avatar-5" class="rounded avatar-lg">
                         </div>
                     </div>
                     <!-- end row -->
