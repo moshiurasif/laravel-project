@@ -7,6 +7,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -17,7 +18,7 @@ class AdminController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
-        Toastr::success('User Logout Successfully', 'success', ["options"]);
+        Toastr::success('Admin Logout Successfully', 'success', ["options"]);
         return redirect('/login');
     }
 
@@ -54,5 +55,30 @@ class AdminController extends Controller
         Toastr::success('Profile Updated Successfully', 'success', ["options"]);
 
         return redirect()->route('admin.profile');
+    }
+
+    public function ChangePassword()
+    {
+        return view("admin.admin_change_password");
+    }
+    public function UpdatePassword(Request $request)
+    {
+        $validateData = $request->validate([
+            'oldPassword' => "required",
+            'newPassword' => "required",
+            'confirmPassword' => "required|same:newPassword",
+        ]);
+
+        $hashedPassword = Auth::user()->password;
+        if (Hash::check($request->oldPassword, $hashedPassword)) {
+            $users = User::find(Auth::id());
+            $users->password = bcrypt($request->newPassword);
+            $users->save();
+            Toastr::success('Password Updated Successfully', 'success', ["options"]);
+            return redirect()->back();
+        } else {
+            Toastr::error('Old Password is not match', 'Error', ["options"]);
+            return redirect()->back();
+        }
     }
 }
