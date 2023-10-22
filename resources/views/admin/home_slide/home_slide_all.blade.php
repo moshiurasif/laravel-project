@@ -8,8 +8,10 @@
 
                 <h4 class="card-title">Home Slide Page</h4>
                 
-                <form action="{{route('store.profile')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('update.slide')}}" method="post" enctype="multipart/form-data">
                     @csrf
+
+                    <input type="hidden" name="id" value="{{$homeSlide->id}}">
                     <div class="row mb-3">
                         <label for="title" class="col-sm-2 col-form-label">Title</label>
                         <div class="col-sm-10">
@@ -20,7 +22,7 @@
                     <div class="row mb-3">
                         <label for="short_title" class="col-sm-2 col-form-label">Short Title</label>
                         <div class="col-sm-10">
-                            <input name="email" class="form-control" type="text" value="{{$homeSlide->short_title}}" id="short_title">
+                            <input name="short_title" class="form-control" type="text" value="{{$homeSlide->short_title}}" id="short_title">
                         </div>
                     </div>
                     <!-- end row -->
@@ -41,7 +43,7 @@
                     <div class="row mb-3">
                         <label for="home_slide" class="col-sm-2 col-form-label"></label>
                         <div class="col-sm-10">
-                            <img id="showImage" src="{{(!empty($homeSlide->home_slide)) ? url('upload/home_slide/'. $homeSlide->home_slide) : url('no-image.jpg')}}" alt="avatar-5" class="rounded avatar-lg">
+                            <img id="showImage" src="{{(!empty($homeSlide->home_slide)) ? url($homeSlide->home_slide) : url('no-image.jpg')}}" alt="avatar-5" class="rounded avatar-lg">
                         </div>
                     </div>
                     <!-- end row -->
@@ -55,7 +57,7 @@
 
 <script>
     $(document).ready(function(){
-        $('#propic').change(function(e){
+        $('#home_slide').change(function(e){
             let reader = new FileReader();
             reader.onload = function(e){
                 $('#showImage').attr('src', e.target.result);
