@@ -136,11 +136,52 @@
         <script src="{{asset('backend/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')}}"></script>
 
         {{-- <script src="{{asset('backend/assets/js/pages/dashboard.init.js')}}"></script> --}}
-
+        <!--tinymce js-->
+        
         <!-- App js -->
         <script src="{{asset('backend/assets/js/app.js')}}"></script>
         <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
         {!! Toastr::message() !!}
+
+        <script src="{{asset('backend/assets/libs/tinymce/tinymce.min.js')}}"></script>
+
+        <!-- init js -->
+        <script src="{{asset('backend/assets/js/pages/form-editor.init.js')}}"></script>
+
+        <!-- Required datatable js -->
+        <script src="{{asset('backend/assets/libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+        <script src="{{asset('backend/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.j')}}s"></script>
+        <!-- Datatable init js -->
+        <script src="{{asset('backend/assets/js/pages/datatables.init.js')}}"></script>
+
+        {{-- sweet alert --}}
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            $(function(){
+                $(document).on("click", "#delete", function(e){
+                    e.preventDefault();
+                    var link = $(this).attr('href');
+                    Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = link
+                    Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                    )
+                    }
+        })
+                })
+            })
+        </script>
     </body>
 
 </html>
